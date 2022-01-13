@@ -30,3 +30,15 @@ spec:
             secretKeyRef:
               name: mongodb-secret
               key: mongo-root-password
+--- # syntax for document separation
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  selector:
+    app: mongodb # connect service to the pod described above
+  ports:
+    - protocol: TCP
+      port: 27017 # service port
+      targetPort: 27017 # pod port
